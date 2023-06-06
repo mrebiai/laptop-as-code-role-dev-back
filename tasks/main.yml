@@ -1,0 +1,5 @@
+---
+# software
+- import_tasks: software/intellij.yml
+- import_tasks: software/docker.yml
+

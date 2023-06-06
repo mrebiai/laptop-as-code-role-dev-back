@@ -1,0 +1,42 @@
+---
+# If no license
+- name: IntellijIdeaCommunity - Install Snap
+  tags: intellij
+  become: true
+  snap:
+    name: intellij-idea-community
+    classic: yes
+    channel: latest/edge
+    state: present
+  when: not intellij_idea_ultimate_license
+
+- name: IntellijIdeaUltimate - Uninstall Snap
+  tags: intellij
+  become: true
+  snap:
+    name: intellij-idea-ultimate
+    classic: yes
+    channel: latest/edge
+    state: absent
+  when: not intellij_idea_ultimate_license
+
+# If license
+- name: IntellijIdeaUltimate - Install Snap
+  tags: intellij
+  become: true
+  snap:
+    name: intellij-idea-ultimate
+    classic: yes
+    channel: latest/edge
+    state: present
+  when: intellij_idea_ultimate_license
+
+- name: IntellijIdeaCommunity - Uninstall Snap
+  tags: intellij
+  become: true
+  snap:
+    name: intellij-idea-community
+    classic: yes
+    channel: latest/edge
+    state: absent
+  when: intellij_idea_ultimate_license
